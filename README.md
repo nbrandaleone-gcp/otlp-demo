@@ -3,7 +3,9 @@
 September 2025
 
 This demo project shows how to use the Crystal language and Open Telemetry (OTLP) 
-to send metrics and logs to both a local collector (Jaeger) and when running on Google Cloud Run.
+to send metrics and logs to both a local collector (Jaeger) and while running on Google Cloud Run.
+This repo is used to test out various ideas for a series of blog posts:
+- https://medium.com/@nbrand01/instrumenting-a-crystal-program-with-otlp-571d5ae9348b
 
 A Cloud Run service can only report custom OTLP metrics to Google Cloud Managed Service for Prometheus by using the Google-Built OpenTelemetry Collector as a sidecar. Logs and Traces
 are forwarded to Cloud Logging and Cloud Trace as expected.
