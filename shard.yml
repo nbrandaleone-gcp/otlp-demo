@@ -1,0 +1,25 @@
+name: otlp-demo
+version: 0.1.0
+
+authors:
+  - Nick Brandaleone <nbrand@mac.com>
+
+description: |
+  "This crystal program tests out OLTP"
+
+targets:
+  otlp-demo:
+    main: src/fibonacci.cr
+
+crystal: '>= 1.17.1'
+
+dependencies:
+  opentelemetry-sdk:
+    github: wyhaines/opentelemetry-sdk.cr
+
+development_dependencies:
+  ameba:
+    github: crystal-ameba/ameba
+    version: ~> 1.6.4
+
+license: MIT
