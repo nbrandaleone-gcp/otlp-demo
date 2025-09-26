@@ -42,9 +42,15 @@ class Fibonacci
       span.set_attribute("fibonacci.n", "#{x}")
       span.set_attribute("fibonacci.result", "#{a}")
 
-      a
-    end # end span
-  end   # end def
+      # Create a child span
+      span.add_event("dispatching to handler")
+      OpenTelemetry.tracer.in_span("handler") do |child_span|
+        child_span.add_event("sleeping for a random time")
+        sleep rand(0.2..0.5).seconds
+        a
+      end  # child_span
+    end    # end span
+  end      # end def
 
   # In this example, the HTTP server that handles fibonacci requests
   # is spawned into it's own fiber. This example would work just fine

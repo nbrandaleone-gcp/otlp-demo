@@ -30,8 +30,16 @@ TODO: Write usage instructions here
 
 ## Test
 curl "http://127.0.0.1:8080/?n=37"
+curl -H "Authorization: Bearer $(gcloud auth print-identity-token)" https://otel-cloud-run-demo-161156519703.us-central1.run.app/?n=37
+
+gcloud run services proxy otel-cloud-run-demo \
+--project testing-355714 \
+--port 5000
+
+crystal run src/load_generator.cr
 
 ## Appendix and sources
+
 Open Telemetry
 - https://opentelemetry.io/
 - https://opentelemetry.io/docs/languages/ruby/exporters/

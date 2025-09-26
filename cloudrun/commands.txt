@@ -1,0 +1,22 @@
+gcloud secrets create otlp-config --data-file=otel-config.yaml --project=testing-355714
+gcloud secrets versions list otlp-config
+gcloud secrets versions add otlp-config --data-file=otel-config.yaml
+
+## Create Artifact Registry repo:
+gcloud artifacts repositories create run-otel \
+    --repository-format=docker \
+    --location=REGION \
+    --project=PROJECT_ID
+
+# Build container
+gcloud builds submit \
+--tag us-central1-docker.pkg.dev/testing-355714/run-otel/sample-metrics-app .
+
+# Create a service
+gcloud run deploy otel-demo \
+--image us-central1-docker.pkg.dev/testing-355714/run-otel/sample-metrics-app \
+--region us-central1 \
+--allow-unauthenticated
+
+# Create new service with sidecar
+gcloud run services replace cloudrun/service.yaml

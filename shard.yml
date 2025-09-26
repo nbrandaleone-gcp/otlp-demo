@@ -5,7 +5,7 @@ authors:
   - Nick Brandaleone <nbrand@mac.com>
 
 description: |
-  "This crystal program tests out OLTP"
+  This crystal program tests out OLTP
 
 targets:
   otlp-demo:
